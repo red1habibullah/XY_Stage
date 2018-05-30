@@ -34,12 +34,15 @@ int ib = 0;
 const int asize = 7;
 float diodex = 14.11;
 float diodey = 13.48;
+//               D1     D2     D3     D4     D5     D6
+float ax[] = {0, 37.06, 37.06, 23.31, 23.31, 9.56,  9.56};
+float ay[] = {0, 11.84, 24.4 , 11.84, 24.4 , 11.84, 24.4};
 //               D1    D2     D3     D4     D5     D6
-float ax[] = {0, 10.0, 10,    24.11, 24.11, 38.22, 38.22};
-float ay[] = {0, 12.4, 25.88, 12.4 , 25.88, 12.14, 25.88};
+//float ax[] = {0, 10.0, 10,    24.11, 24.11, 38.22, 38.22};
+//float ay[] = {0, 12.4, 25.88, 12.4 , 25.88, 12.14, 25.88};
 //   Boards:  1  2     3     4      5      6
-float bx[] = {0, 48, 96, 96 , 48 , 0    };
-float by[] = {0, 0   , 0   , 57 , 57 , 57};
+float bx[] = {0, 48,   96,   96 ,   48 ,   0    };
+float by[] = {0, 0   , 0   , 57 ,   57 ,   57};
 //bool pause = false;
 
 //maxY = 101.1
@@ -199,6 +202,13 @@ void Adjust(float dx, float dy)
     Serial.print("      ");
     Serial.println(by[i]);
   }
+    xmax = xmax - dx;
+    ymax = ymax - dy;
+    Serial.print("xmax: ");
+    Serial.print( xmax   );
+    Serial.print(",      ");
+    Serial.print("ymax: ");
+    Serial.println( ymax   );
 }
 
 void XYMove(float x, float y)
