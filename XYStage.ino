@@ -408,6 +408,19 @@ void  verticalHomeRoutine(){
   myMotor2->release();
 }
 
-
+void Raster(){
+  for (int H=0; H <11; ++H){
+    if (H%2==0){
+      DXYMove(18.56, (12.7+0.6*H));
+    }
+    else if (H%2==1){
+      DXYMove(26.65, (12.7+0.6*H));
+    }
+    else{
+      Serial.print("Problem with H");
+    }
+  }
+  Serial.print("Done");
+}
 
 
