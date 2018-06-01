@@ -108,6 +108,8 @@ void loop() {
   if(command =="n") { if(ix<asize-1){ix = ix + 1; iy = iy + 1; XYMove(ax[ix], ay[iy]); Update();} else Serial.println("Bad Point"); }
   if(command =="p") { if(iy >-1    ){ix = ix - 1; iy = iy - 1; XYMove(ax[ix], ay[iy]); Update();} else Serial.println("Bad Point"); }
   if(command =="reset") {ix = 0; iy = 0; Update();}
+  if(command =="rs"){RasterSet();}
+  if(command =="r" ){Raster();}
   
   if(data == "move") {
     x=xval.toFloat();
@@ -409,18 +411,23 @@ void  verticalHomeRoutine(){
 }
 
 void Raster(){
-  for (int H=0; H <11; ++H){
-    if (H%2==0){
-      DXYMove(18.56, (12.7+0.6*H));
+  //XYMove(bx[3],by[3])
+  for (int H=0; H <10; ++H){
+    if (H%2!=0){
+      XYMove(bx[3]+14.56, by[3]+(13.3+0.6*H));
     }
-    else if (H%2==1){
-      DXYMove(26.65, (12.7+0.6*H));
+    else if (H%2==0){
+      XYMove(bx[3]+28.65, by[3]+(13.3+0.6*H));
     }
     else{
-      Serial.print("Problem with H");
+      Serial.println("Problem with H");
     }
   }
   Serial.print("Done");
+}
+void RasterSet(){
+  XYMove(bx[3]+14.56, by[3]+12.7);
+  Serial.println("Done Raster Set");
 }
 
 
